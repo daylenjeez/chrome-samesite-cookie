@@ -24,7 +24,6 @@ export default [
     input: "src/background.ts",
     output: {
       file: path.resolve("public/background.js"),
-      format: "umd",
     },
     ...baseConfig,
   },
@@ -32,7 +31,6 @@ export default [
     input: "src/popup.ts",
     output: {
       file: path.resolve("public/popup.js"),
-      format: "umd",
       // format: "cjs",
     },
     ...baseConfig,

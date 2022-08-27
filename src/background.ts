@@ -18,7 +18,7 @@ function addLocalChangeListener() {
       if (changes.enable.newValue) {
         addRequestListener();
       } else {
-        chrome.webRequest.onBeforeSendHeaders.removeListener(setCookie);
+        chrome.webRequest.onBeforeSendHeaders.removeListener(getBeforeCookie);
       }
     }
   });
@@ -28,7 +28,7 @@ async function addRequestListener() {
   chrome.webRequest.onBeforeSendHeaders.addListener(
     (details: chrome.webRequest.WebRequestHeadersDetails) => {
       storeAllCookie();
-      setCookie(details);
+      return getBeforeCookie(details);
     },
     { urls: ["<all_urls>"] },
     ["blocking", "requestHeaders", "extraHeaders"]
@@ -39,12 +39,17 @@ function storeAllCookie() {
   chrome.cookies.getAll({}, (cookies) => {
     cookieMap.clear();
     cookies.forEach(({ domain, name, value }) =>
-      cookieMap.set(domain, `${cookieMap.get(domain) ?? ""};${name}=${value};`)
+      cookieMap.set(
+        domain,
+        `${
+          cookieMap.has(domain) ? `${cookieMap.get(domain)};` : ""
+        }${name}=${value}`
+      )
     );
   });
 }
 
-function setCookie(details: chrome.webRequest.WebRequestHeadersDetails) {
+function getBeforeCookie(details: chrome.webRequest.WebRequestHeadersDetails) {
   if (headersHasCookie(details)) return;
 
   const domain = getCookieDomain(details.url);
