@@ -1,4 +1,4 @@
-# Chrome-cross-domain-cookies
+# Chrome cross domain cookies
 
 ## The cookie can be sent as a result of a 'cross-site' request
 
