@@ -1,0 +1,30 @@
+{
+    "name": "Cookie SimeSite",
+    "description": "SimeSite by default Cookie",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "icons": {
+      "16": "icon/cookie-enable.png",
+      "48": "icon/cookie-enable.png",
+      "128": "icon/cookie-enable.png"
+    },
+  
+    "browser_action": {
+      "default_icon": "icon/cookie-enable.png",
+      "default_title": "Cookie SimeSite",
+      "default_popup": "popup.html"
+    },
+    "permissions": [
+      "storage",
+      "webRequest",
+      "webRequestBlocking",
+      "cookies",
+      "*://*/"
+    ],
+    "background": {
+      "scripts": ["background.js"],
+      "persistent": true
+    },
+    "content_scripts": []
+  }
+  
