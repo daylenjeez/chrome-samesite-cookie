@@ -1,1 +1,111 @@
-var e=function(e,n,r,t){return new(r||(r=Promise))((function(o,a){function u(e){try{i(t.next(e))}catch(e){a(e)}}function s(e){try{i(t.throw(e))}catch(e){a(e)}}function i(e){var n;e.done?o(e.value):(n=e.value,n instanceof r?n:new r((function(e){e(n)}))).then(u,s)}i((t=t.apply(e,n||[])).next())}))};const n=new Map;function r(){return e(this,void 0,void 0,(function*(){chrome.webRequest.onBeforeSendHeaders.addListener((e=>(t(),o(e))),{urls:["<all_urls>"]},["blocking","requestHeaders","extraHeaders"])}))}function t(){chrome.cookies.getAll({},(e=>{n.clear(),e.forEach((({domain:e,name:r,value:t})=>n.set(e,`${n.has(e)?`${n.get(e)};`:""}${r}=${t}`)))}))}function o(e){if(function(e){var n;return null===(n=e.requestHeaders)||void 0===n?void 0:n.some((({name:e})=>"Cookie"===e))}(e))return;const r=function(e){var n,r;if("localhost"===e)return e;const t=e.replace(/(^\w+:|^)\/\//,""),o=/^(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/,a=/.[^.]*\.[^.]{2,3}(?:\.[^.]{2,3})?$/,u=null===(n=t.match(o))||void 0===n?void 0:n[0];if(!u)return;return null===(r=u.match(a))||void 0===r?void 0:r[0]}(e.url);if(!r)return;let t=n.get(r);return t?(e.requestHeaders||(e.requestHeaders=[]),e.requestHeaders.push({name:"Cookie",value:t}),{requestHeaders:e.requestHeaders}):void 0}t(),chrome.storage.onChanged.addListener((function(e){"enable"in e&&(e.enable.newValue?r():chrome.webRequest.onBeforeSendHeaders.removeListener(o))})),chrome.storage.local.set({enable:!0},r);
+const PROTOCAL_REG = /(^\w+:|^)\/\//;
+const DOMAIN_REG = /^(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/; //extra domain
+const SECONDLEVEL_DOMIN_REG = /.[^.]*\.[^.]{2,3}(?:\.[^.]{2,3})?$/; //extra 2nd levels domains
+const LOCALHOST = ["localhost", "127.0.0.1"];
+const INITIAL_ENABLE = false;
+const INITIAL_DEVELOPMENT_MODE = true;
+const cookieMap = new Map();
+const state = {
+    enable: INITIAL_ENABLE,
+    developmentMode: INITIAL_DEVELOPMENT_MODE,
+};
+init();
+function init() {
+    addLocalChangeListener();
+    chrome.storage.local.get(["enable", "developmentMode"], ({ enable, developmentMode }) => {
+        const _enable = enable !== null && enable !== void 0 ? enable : INITIAL_ENABLE;
+        const _developmentMode = developmentMode !== null && developmentMode !== void 0 ? developmentMode : INITIAL_DEVELOPMENT_MODE;
+        state.enable = _enable;
+        state.developmentMode = _developmentMode;
+        chrome.storage.local.set({
+            enable: _enable,
+            developmentMode: _developmentMode,
+        });
+        if (enable)
+            addRequestListener();
+    });
+}
+function addLocalChangeListener() {
+    chrome.storage.onChanged.addListener(function (changes) {
+        if ("developmentMode" in changes) {
+            const value = changes.developmentMode.newValue;
+            state.developmentMode = value;
+        }
+        if ("enable" in changes) {
+            const value = changes.enable.newValue;
+            state.enable = value;
+            setIcon(value);
+            if (value) {
+                addRequestListener();
+            }
+            else {
+                chrome.webRequest.onBeforeSendHeaders.removeListener(requestListener);
+            }
+        }
+    });
+}
+function addRequestListener() {
+    chrome.webRequest.onBeforeSendHeaders.addListener(requestListener, { urls: ["<all_urls>"] }, ["blocking", "requestHeaders", "extraHeaders"]);
+}
+function requestListener(details) {
+    const { initiator } = details;
+    console.log(state.developmentMode);
+    if (state.developmentMode && !isLocal(initiator))
+        return; //only allow localhost
+    storeAllCookie();
+    return getBeforeCookie(details);
+}
+function storeAllCookie() {
+    chrome.cookies.getAll({}, (cookies) => {
+        cookieMap.clear();
+        cookies.forEach(({ domain, name, value }) => cookieMap.set(domain, `${cookieMap.has(domain) ? `${cookieMap.get(domain)};` : ""}${name}=${value}`));
+    });
+}
+function getBeforeCookie(details) {
+    if (headersHasCookie(details))
+        return;
+    const domain = getCookieDomain(details.url);
+    if (!domain)
+        return;
+    let beforeCookie = cookieMap.get(domain);
+    if (!beforeCookie)
+        return;
+    if (!details.requestHeaders)
+        details.requestHeaders = [];
+    details.requestHeaders.push({ name: "Cookie", value: beforeCookie });
+    return { requestHeaders: details.requestHeaders };
+}
+function headersHasCookie(details) {
+    var _a;
+    return (_a = details.requestHeaders) === null || _a === void 0 ? void 0 : _a.some(({ name }) => name === "Cookie");
+}
+function getCookieDomain(url) {
+    var _a, _b;
+    if (url === "localhost")
+        return url;
+    const urlWidthoutProtocol = removeProtocal(url); //remove protocol
+    const domain = (_a = urlWidthoutProtocol.match(DOMAIN_REG)) === null || _a === void 0 ? void 0 : _a[0];
+    if (!domain)
+        return;
+    const res = (_b = domain.match(SECONDLEVEL_DOMIN_REG)) === null || _b === void 0 ? void 0 : _b[0];
+    return res;
+}
+function removeProtocal(url) {
+    return url.replace(PROTOCAL_REG, "");
+}
+function isLocal(url) {
+    var _a;
+    if (!url)
+        return;
+    const domain = (_a = removeProtocal(url).match(DOMAIN_REG)) === null || _a === void 0 ? void 0 : _a[0];
+    if (!domain)
+        return;
+    return LOCALHOST.includes(domain);
+}
+function getIcon(isEnabled = false) {
+    const path = isEnabled ? "cookie-enable" : "cookie";
+    return `icon/${path}.png`;
+}
+function setIcon(value) {
+    chrome.browserAction.setIcon({ path: getIcon(value) });
+}

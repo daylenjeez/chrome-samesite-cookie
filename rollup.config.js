@@ -1,7 +1,6 @@
 import path from "path";
 import ts from "rollup-plugin-typescript2";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
-import html from "@web/rollup-plugin-html";
 import { terser } from "rollup-plugin-terser";
 
 const baseConfig = {
@@ -15,7 +14,7 @@ const baseConfig = {
     nodeResolve({
       extensions: [".js", ".ts"],
     }),
-    terser(),
+    // terser(),
   ],
 };
 

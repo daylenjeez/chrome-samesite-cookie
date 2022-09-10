@@ -10,7 +10,7 @@
     },
   
     "browser_action": {
-      "default_icon": "icon/cookie-enable.png",
+      "default_icon": "icon/cookie.png",
       "default_title": "Cross Domain Cookie",
       "default_popup": "popup.html"
     },

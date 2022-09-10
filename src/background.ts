@@ -2,37 +2,76 @@ type Props = {
   readonly cookieMap: Map<string, string>;
 };
 
+const PROTOCAL_REG = /(^\w+:|^)\/\//;
+const DOMAIN_REG = /^(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/; //extra domain
+const SECONDLEVEL_DOMIN_REG = /.[^.]*\.[^.]{2,3}(?:\.[^.]{2,3})?$/; //extra 2nd levels domains
+const LOCALHOST = ["localhost", "127.0.0.1"];
+const INITIAL_ENABLE = false;
+const INITIAL_DEVELOPMENT_MODE = true;
+
 const cookieMap = new Map<string, string>();
+const state = {
+  enable: INITIAL_ENABLE,
+  developmentMode: INITIAL_DEVELOPMENT_MODE,
+};
 
 init();
 
 function init() {
-  storeAllCookie();
   addLocalChangeListener();
-  chrome.storage.local.set({ enable: true }, addRequestListener);
+  chrome.storage.local.get(
+    ["enable", "developmentMode"],
+    ({ enable, developmentMode }) => {
+      const _enable = enable ?? INITIAL_ENABLE;
+      const _developmentMode = developmentMode ?? INITIAL_DEVELOPMENT_MODE;
+
+      state.enable = _enable;
+      state.developmentMode = _developmentMode;
+
+      chrome.storage.local.set({
+        enable: _enable,
+        developmentMode: _developmentMode,
+      });
+      if (enable) addRequestListener();
+    }
+  );
 }
 
 function addLocalChangeListener() {
   chrome.storage.onChanged.addListener(function (changes) {
+    if ("developmentMode" in changes) {
+      const value = changes.developmentMode.newValue;
+      state.developmentMode = value;
+    }
+
     if ("enable" in changes) {
-      if (changes.enable.newValue) {
+      const value = changes.enable.newValue;
+      state.enable = value;
+      setIcon(value);
+      if (value) {
         addRequestListener();
       } else {
-        chrome.webRequest.onBeforeSendHeaders.removeListener(getBeforeCookie);
+        chrome.webRequest.onBeforeSendHeaders.removeListener(requestListener);
       }
     }
   });
 }
 
-async function addRequestListener() {
+function addRequestListener() {
   chrome.webRequest.onBeforeSendHeaders.addListener(
-    (details: chrome.webRequest.WebRequestHeadersDetails) => {
-      storeAllCookie();
-      return getBeforeCookie(details);
-    },
+    requestListener,
     { urls: ["<all_urls>"] },
     ["blocking", "requestHeaders", "extraHeaders"]
   );
+}
+
+function requestListener(details: chrome.webRequest.WebRequestHeadersDetails) {
+  const { initiator } = details;
+  console.log(state.developmentMode);
+  if (state.developmentMode && !isLocal(initiator)) return; //only allow localhost
+
+  storeAllCookie();
+  return getBeforeCookie(details);
 }
 
 function storeAllCookie() {
@@ -70,14 +109,31 @@ function headersHasCookie(details: chrome.webRequest.WebRequestHeadersDetails) {
 
 function getCookieDomain(url: string) {
   if (url === "localhost") return url;
-  const urlWidthoutProtocol = url.replace(/(^\w+:|^)\/\//, ""); //remove protocol
-
-  const DOMAIN_REG = /^(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/; //extra domain
-  const SECONDLEVEL_DOMIN_REG = /.[^.]*\.[^.]{2,3}(?:\.[^.]{2,3})?$/; //extra 2nd levels domains
+  const urlWidthoutProtocol = removeProtocal(url); //remove protocol
 
   const domain = urlWidthoutProtocol.match(DOMAIN_REG)?.[0];
   if (!domain) return;
 
   const res = domain.match(SECONDLEVEL_DOMIN_REG)?.[0];
   return res;
+}
+
+function removeProtocal(url: string) {
+  return url.replace(PROTOCAL_REG, "");
+}
+
+function isLocal(url?: string) {
+  if (!url) return;
+  const domain = removeProtocal(url).match(DOMAIN_REG)?.[0];
+  if (!domain) return;
+  return LOCALHOST.includes(domain);
+}
+
+function getIcon(isEnabled = false) {
+  const path = isEnabled ? "cookie-enable" : "cookie";
+  return `icon/${path}.png`;
+}
+
+function setIcon(value: boolean) {
+  chrome.browserAction.setIcon({ path: getIcon(value) });
 }

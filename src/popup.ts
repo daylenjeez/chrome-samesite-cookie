@@ -1,16 +1,19 @@
 window.onload = () => {
-  const getIcon = (isEnabled = false) => {
-    const path = isEnabled ? "cookie-enable" : "cookie";
-    return `icon/${path}.png`;
-  };
-
   const GlobalSwitch = document.querySelector(
     "#globalSwitch"
   ) as HTMLInputElement | null;
-  if (!GlobalSwitch) return;
+
+  const DevelopmentMode = document.querySelector(
+    "#developmentMode"
+  ) as HTMLInputElement | null;
+
+  if (!GlobalSwitch || !DevelopmentMode) return;
   chrome.storage.local.get(
-    ["enable"],
-    ({ enable }) => (GlobalSwitch.checked = enable)
+    ["enable", "developmentMode"],
+    ({ enable, developmentMode }) => {
+      GlobalSwitch.checked = enable;
+      DevelopmentMode.checked = developmentMode;
+    }
   );
 
   GlobalSwitch.addEventListener("click", (e) => {
@@ -19,7 +22,16 @@ window.onload = () => {
       const value = !enable;
       (e.target as HTMLInputElement).checked = value;
       chrome.storage.local.set({ enable: value });
-      chrome.browserAction.setIcon({ path: getIcon(value) });
+    });
+  });
+
+  DevelopmentMode.addEventListener("click", (e) => {
+    chrome.storage.local.get(["developmentMode"], ({ developmentMode }) => {
+      if (!e) return;
+      const value = !developmentMode;
+      (e.target as HTMLInputElement).checked = value;
+
+      chrome.storage.local.set({ developmentMode: value });
     });
   });
 };

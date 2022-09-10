@@ -1,13 +1,15 @@
 .container{
-  width: 90px;
   padding: 6px;
   color:#303133;
- 
 }
 
 .row{
   display: flex;
+  justify-content: space-between;
   align-items: center;
+}
+.row:not(:last-child){
+  margin-bottom: 15px;
 }
 .label{
   padding-right: 6px;
