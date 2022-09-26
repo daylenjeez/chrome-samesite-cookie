@@ -12,7 +12,7 @@ const INITIAL_DEVELOPMENT_MODE = true;
 const cookieMap = new Map<string, string>();
 const state = {
   enable: INITIAL_ENABLE,
-  developmentMode: INITIAL_DEVELOPMENT_MODE,
+  developMode: INITIAL_DEVELOPMENT_MODE,
 };
 
 init();
@@ -20,17 +20,19 @@ init();
 function init() {
   addLocalChangeListener();
   chrome.storage.local.get(
-    ["enable", "developmentMode"],
-    ({ enable, developmentMode }) => {
+    ["enable", "developMode"],
+    ({ enable, developMode }) => {
       const _enable = enable ?? INITIAL_ENABLE;
-      const _developmentMode = developmentMode ?? INITIAL_DEVELOPMENT_MODE;
+      const _developMode = developMode ?? INITIAL_DEVELOPMENT_MODE;
 
       state.enable = _enable;
-      state.developmentMode = _developmentMode;
+      state.developMode = _developMode;
+
+      setIcon(_enable);
 
       chrome.storage.local.set({
         enable: _enable,
-        developmentMode: _developmentMode,
+        developMode: _developMode,
       });
       if (enable) addRequestListener();
     }
@@ -39,9 +41,9 @@ function init() {
 
 function addLocalChangeListener() {
   chrome.storage.onChanged.addListener(function (changes) {
-    if ("developmentMode" in changes) {
-      const value = changes.developmentMode.newValue;
-      state.developmentMode = value;
+    if ("developMode" in changes) {
+      const value = changes.developMode.newValue;
+      state.developMode = value;
     }
 
     if ("enable" in changes) {
@@ -67,8 +69,8 @@ function addRequestListener() {
 
 function requestListener(details: chrome.webRequest.WebRequestHeadersDetails) {
   const { initiator } = details;
-  console.log(state.developmentMode);
-  if (state.developmentMode && !isLocal(initiator)) return; //only allow localhost
+  console.log(state.developMode);
+  if (state.developMode && !isLocal(initiator)) return; //only allow localhost
 
   storeAllCookie();
   return getBeforeCookie(details);

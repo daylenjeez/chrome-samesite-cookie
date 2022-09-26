@@ -3,35 +3,47 @@ window.onload = () => {
     "#globalSwitch"
   ) as HTMLInputElement | null;
 
-  const DevelopmentMode = document.querySelector(
-    "#developmentMode"
+  const globalMainSwitch = document.querySelector(
+    "#globalMainSwitch"
   ) as HTMLInputElement | null;
 
-  if (!GlobalSwitch || !DevelopmentMode) return;
+  const DevelopMode = document.querySelector(
+    "#developMode"
+  ) as HTMLInputElement | null;
+
+  if (!GlobalSwitch || !DevelopMode || !globalMainSwitch) return;
+
+  const setEnable = (enable: boolean) => {
+    GlobalSwitch.checked = enable;
+    globalMainSwitch.innerHTML = enable ? "enable" : "disable";
+  };
+
+  const toggleEnable = () => {
+    chrome.storage.local.get(["enable"], ({ enable }) => {
+      const value = !enable;
+      setEnable(value);
+      chrome.storage.local.set({ enable: value });
+    });
+  };
+
   chrome.storage.local.get(
-    ["enable", "developmentMode"],
-    ({ enable, developmentMode }) => {
-      GlobalSwitch.checked = enable;
-      DevelopmentMode.checked = developmentMode;
+    ["enable", "developMode"],
+    ({ enable, developMode }) => {
+      setEnable(enable);
+      DevelopMode.checked = developMode;
     }
   );
 
-  GlobalSwitch.addEventListener("click", (e) => {
-    chrome.storage.local.get(["enable"], ({ enable }) => {
-      if (!e) return;
-      const value = !enable;
-      (e.target as HTMLInputElement).checked = value;
-      chrome.storage.local.set({ enable: value });
-    });
-  });
+  globalMainSwitch.addEventListener("click", () => toggleEnable());
+  GlobalSwitch.addEventListener("click", () => toggleEnable());
 
-  DevelopmentMode.addEventListener("click", (e) => {
-    chrome.storage.local.get(["developmentMode"], ({ developmentMode }) => {
+  DevelopMode.addEventListener("click", (e) => {
+    chrome.storage.local.get(["developMode"], ({ developMode }) => {
       if (!e) return;
-      const value = !developmentMode;
+      const value = !developMode;
       (e.target as HTMLInputElement).checked = value;
 
-      chrome.storage.local.set({ developmentMode: value });
+      chrome.storage.local.set({ developMode: value });
     });
   });
 };

@@ -1,28 +1,33 @@
 window.onload = () => {
     const GlobalSwitch = document.querySelector("#globalSwitch");
-    const DevelopmentMode = document.querySelector("#developmentMode");
-    if (!GlobalSwitch || !DevelopmentMode)
+    const globalMainSwitch = document.querySelector("#globalMainSwitch");
+    const DevelopMode = document.querySelector("#developMode");
+    if (!GlobalSwitch || !DevelopMode || !globalMainSwitch)
         return;
-    chrome.storage.local.get(["enable", "developmentMode"], ({ enable, developmentMode }) => {
+    const setEnable = (enable) => {
         GlobalSwitch.checked = enable;
-        DevelopmentMode.checked = developmentMode;
-    });
-    GlobalSwitch.addEventListener("click", (e) => {
+        globalMainSwitch.innerHTML = enable ? "enable" : "disable";
+    };
+    const toggleEnable = () => {
         chrome.storage.local.get(["enable"], ({ enable }) => {
-            if (!e)
-                return;
             const value = !enable;
-            e.target.checked = value;
+            setEnable(value);
             chrome.storage.local.set({ enable: value });
         });
+    };
+    chrome.storage.local.get(["enable", "developMode"], ({ enable, developMode }) => {
+        setEnable(enable);
+        DevelopMode.checked = developMode;
     });
-    DevelopmentMode.addEventListener("click", (e) => {
-        chrome.storage.local.get(["developmentMode"], ({ developmentMode }) => {
+    globalMainSwitch.addEventListener("click", () => toggleEnable());
+    GlobalSwitch.addEventListener("click", () => toggleEnable());
+    DevelopMode.addEventListener("click", (e) => {
+        chrome.storage.local.get(["developMode"], ({ developMode }) => {
             if (!e)
                 return;
-            const value = !developmentMode;
+            const value = !developMode;
             e.target.checked = value;
-            chrome.storage.local.set({ developmentMode: value });
+            chrome.storage.local.set({ developMode: value });
         });
     });
 };

@@ -7,19 +7,20 @@ const INITIAL_DEVELOPMENT_MODE = true;
 const cookieMap = new Map();
 const state = {
     enable: INITIAL_ENABLE,
-    developmentMode: INITIAL_DEVELOPMENT_MODE,
+    developMode: INITIAL_DEVELOPMENT_MODE,
 };
 init();
 function init() {
     addLocalChangeListener();
-    chrome.storage.local.get(["enable", "developmentMode"], ({ enable, developmentMode }) => {
+    chrome.storage.local.get(["enable", "developMode"], ({ enable, developMode }) => {
         const _enable = enable !== null && enable !== void 0 ? enable : INITIAL_ENABLE;
-        const _developmentMode = developmentMode !== null && developmentMode !== void 0 ? developmentMode : INITIAL_DEVELOPMENT_MODE;
+        const _developMode = developMode !== null && developMode !== void 0 ? developMode : INITIAL_DEVELOPMENT_MODE;
         state.enable = _enable;
-        state.developmentMode = _developmentMode;
+        state.developMode = _developMode;
+        setIcon(_enable);
         chrome.storage.local.set({
             enable: _enable,
-            developmentMode: _developmentMode,
+            developMode: _developMode,
         });
         if (enable)
             addRequestListener();
@@ -27,9 +28,9 @@ function init() {
 }
 function addLocalChangeListener() {
     chrome.storage.onChanged.addListener(function (changes) {
-        if ("developmentMode" in changes) {
-            const value = changes.developmentMode.newValue;
-            state.developmentMode = value;
+        if ("developMode" in changes) {
+            const value = changes.developMode.newValue;
+            state.developMode = value;
         }
         if ("enable" in changes) {
             const value = changes.enable.newValue;
@@ -49,8 +50,8 @@ function addRequestListener() {
 }
 function requestListener(details) {
     const { initiator } = details;
-    console.log(state.developmentMode);
-    if (state.developmentMode && !isLocal(initiator))
+    console.log(state.developMode);
+    if (state.developMode && !isLocal(initiator))
         return; //only allow localhost
     storeAllCookie();
     return getBeforeCookie(details);
