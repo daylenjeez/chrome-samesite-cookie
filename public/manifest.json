@@ -1,5 +1,5 @@
 {
-    "name": "Cross Domain Cookie",
+    "name": "Cross Site Cookie",
     "description": "Allow your cookie without same-site",
     "version": "0.01",
     "manifest_version": 2,
@@ -11,7 +11,7 @@
   
     "browser_action": {
       "default_icon": "icon/cookie.png",
-      "default_title": "Cross Domain Cookie",
+      "default_title": "Cross Site Cookie",
       "default_popup": "popup.html"
     },
     "permissions": [
