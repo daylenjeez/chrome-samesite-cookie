@@ -1,9 +1,9 @@
 # Chrome extension:allow cookies without sameSite
-## 支持 谷歌浏览器 >94版本 跨站共享cookie
+## 支持 谷歌浏览器 >94版本 跨站携带cookie
 > The cookie can be sent as a result of a 'cross-site' reques
 
 ## 背景
-许多公司都有 统一登录、Electron、本地开发等场景需要支持``cookie``跨站共享，但在 ``chrome`` 94版本之后，谷歌完全移除了允许跨站共享``cookie``的配置。 只能通过配置``proxy``、``< 91``版本的``chromium`` 或其它浏览器等方案去调试开发，这些方案始终不太优雅。而只需要安装此插件就可以很方便的解决这个问题。</br>如果觉得有用请点个``star``吧,如果有任何疑问欢迎提``issues``。
+许多公司都有 统一登录、Electron、本地开发等场景需要支持跨站携带``cookie``，但在 ``chrome`` 94版本之后，谷歌完全移除了``samesite``配置。 只能通过``proxy``、``< 91``版本的``chromium`` 或其它浏览器等方案去调试开发，这些方案始终不太优雅。而只需要安装此插件就可以很方便的解决这个问题。</br>如果觉得有用请点个``star``吧,如果有任何疑问欢迎提``issues``。
 
 ## 安装
 1. 下载仓库中的 ``extension.zip`` 压缩包 <a href="https://github.com/newJcole/chrome-cross-domain-cookie/raw/main/extension.zip">点击下载</a>；
@@ -20,7 +20,7 @@
   
 - 开发者模式(``development``)
   - 默认开启（建议在``localhost``的场景下使用）；
-  - 开启：则只在``localhost``下允许跨站``cookie``共享，关闭：允许所有网站使用``cookie``共享；
+  - 开启：则只在``localhost``下允许跨站``cookie``携带，关闭：允许所有网站使用``cookie``携带；
   
 ## 预览
   
