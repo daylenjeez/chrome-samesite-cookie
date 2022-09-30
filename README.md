@@ -1,4 +1,4 @@
-# Chrome crossdomain cookies extensions
+# Chrome crossdomain cookies extension
 ## 支持 谷歌浏览器 >94版本 跨域共享cookie
 > The cookie can be sent as a result of a 'cross-site' reques
 
