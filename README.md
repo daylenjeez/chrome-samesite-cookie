@@ -3,10 +3,10 @@
 > The cookie can be sent as a result of a 'cross-site' reques
 
 ## 安装
-1. 下载仓库中的 ``extension`` 文件夹；
+1. 下载仓库中的 ``extension.zip`` 压缩包；
 2. 打开``Chrome``浏览器，并进入扩展程序目录；
 3. 打开扩展程序页面 右上角的开发者模式；
-4. 将 extension 文件拖进当扩展程序页面，既安装成功；
+4. 将``extension.zip``拖进扩展程序页面，既安装成功；
 5. 在浏览器url输入框的右上角扩展程序点开，点击``固定``按钮常驻在前台；
 &nbsp;&nbsp;<img width="466" alt="image" src="https://user-images.githubusercontent.com/111993029/193187984-9d9a3b73-8513-410d-9c84-811944e647d5.png">
 
