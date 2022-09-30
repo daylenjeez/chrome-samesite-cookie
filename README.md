@@ -17,14 +17,8 @@
   
 - 开发者模式(``development``)
   - 默认开启（建议在``localhost``的场景下使用）
-  - 关闭则允许所有网站使用该插件
+  - 开启：则只在``localhost``下允许跨域``cookie``共享，关闭则允许所有网站使用``cookie``共享
   
 ## 预览
   
 &nbsp;&nbsp;&nbsp;&nbsp;<img width="203" alt="image" src="https://user-images.githubusercontent.com/111993029/193189127-5f79aa75-d95f-4a73-abfe-f8e766a3dfed.png">
-
-
-
-   
-
-
