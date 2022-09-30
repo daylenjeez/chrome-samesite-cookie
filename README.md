@@ -3,7 +3,7 @@
 > The cookie can be sent as a result of a 'cross-site' reques
 
 ## 背景
-许多公司都有 统一登录、Electron、本地开发等场景需要支持``cookie``跨域共享，但在 ``chrome`` 94版本之后，谷歌完全移除了允许跨域共享``cookie``的配置。 只能通过配置``proxy``、``< 91``版本的``chromium`` 或其它浏览器等方案去调试开发，这些方案始终不太优雅。而只需要安装此插件就可以很方便的解决这个问题。</br>如果觉得有用请点个``star``吧,如果有任何疑问欢迎提``issues``；
+许多公司都有 统一登录、Electron、本地开发等场景需要支持``cookie``跨域共享，但在 ``chrome`` 94版本之后，谷歌完全移除了允许跨域共享``cookie``的配置。 只能通过配置``proxy``、``< 91``版本的``chromium`` 或其它浏览器等方案去调试开发，这些方案始终不太优雅。而只需要安装此插件就可以很方便的解决这个问题。</br>如果觉得有用请点个``star``吧,如果有任何疑问欢迎提``issues``。
 
 ## 安装
 1. 下载仓库中的 ``extension.zip`` 压缩包 <a href="https://github.com/newJcole/chrome-cross-domain-cookie/raw/main/extension.zip">点击下载</a>；
