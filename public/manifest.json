@@ -1,5 +1,5 @@
 {
-    "name": "Cross Site Cookie",
+    "name": "CrossSite-Cookie",
     "description": "Allow your cookie without same-site",
     "version": "0.01",
     "manifest_version": 2,
