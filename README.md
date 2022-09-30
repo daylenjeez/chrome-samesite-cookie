@@ -1,6 +1,6 @@
 # Chrome extension:allow cookies without sameSite
 ## 支持 谷歌浏览器 >94版本 跨站携带cookie
-> The cookie can be sent as a result of a 'cross-site' reques
+> The cookie can be sent as a result of a 'cross-site' request
 
 ## 背景
 许多公司都有 统一登录、Electron、本地开发等场景需要支持跨站携带``cookie``，但在 ``chrome`` 94版本之后，谷歌完全移除了``samesite``配置。 只能通过``proxy``、``< 91``版本的``chromium`` 或其它浏览器等方案去调试开发，这些方案始终不太优雅。而只需要安装此插件就可以很方便的解决这个问题。</br>如果觉得有用请点个``star``吧,如果有任何疑问欢迎提``issues``。
