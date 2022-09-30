@@ -1,5 +1,5 @@
 # Chrome crossdomain cookies extensions
-## 解决 chrome > 94 版本 跨域无法共享cookie的问题
+## 支持 谷歌浏览器 > 94 版本 跨域无法共享cookie的问题
 > The cookie can be sent as a result of a 'cross-site' reques
 
 ## 安装
