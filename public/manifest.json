@@ -11,7 +11,7 @@
   
     "browser_action": {
       "default_icon": "icon/cookie.png",
-      "default_title": "Cross Site Cookie",
+      "default_title": "CrossSite Cookie",
       "default_popup": "popup.html"
     },
     "permissions": [
