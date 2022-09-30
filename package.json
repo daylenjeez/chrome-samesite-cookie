@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev":"npx rollup -c -w",
-    "build":"npx rollup -c"
+    "dev": "npx rollup -c -w",
+    "build": "npx rollup -c"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^5.3.1",

@@ -14,7 +14,7 @@ const baseConfig = {
     nodeResolve({
       extensions: [".js", ".ts"],
     }),
-    // terser(),
+    terser(),
   ],
 };
 
