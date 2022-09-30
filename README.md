@@ -6,10 +6,10 @@
 许多公司都有 统一登录、Electron、本地开发等场景需要支持跨站携带``cookie``，但在 ``chrome`` 94版本之后，谷歌完全移除了``samesite``配置。 只能通过``proxy``、``< 91``版本的``chromium`` 或其它浏览器等方案去调试开发，这些方案始终不太优雅。而只需要安装此插件就可以很方便的解决这个问题。</br>如果觉得有用请点个``star``吧,如果有任何疑问欢迎提``issues``。
 
 ## 安装
-1. 下载仓库中的 ``extension.zip`` 压缩包 <a href="https://github.com/newJcole/chrome-cross-domain-cookie/raw/main/extension.zip">点击下载</a>；
+1. 下载仓库中的 ``cookie-extension.zip`` 压缩包 <a href="https://github.com/newJcole/chrome-cross-domain-cookie/raw/main/cookie-extension.zip">点击下载</a>；
 2. 打开``Chrome``浏览器，并进入扩展程序目录；
 3. 打开扩展程序页面 右上角的开发者模式；
-4. 将``extension.zip``拖进扩展程序页面，既安装成功；
+4. 将``cookie-extension.zip``拖进扩展程序页面（直接拖文件夹也可以），既安装成功；
 5. 在浏览器url输入框的右上角扩展程序点开，点击``固定``按钮常驻在前台；
 &nbsp;&nbsp;<img width="466" alt="image" src="https://user-images.githubusercontent.com/111993029/193187984-9d9a3b73-8513-410d-9c84-811944e647d5.png">
 
