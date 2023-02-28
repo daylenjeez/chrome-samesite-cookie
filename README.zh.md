@@ -1,4 +1,4 @@
-简体中文 | [English](README.zh.md)
+简体中文 | [English](README.md)
 # Chrome extension:allow cookies without sameSite
 ## 支持 谷歌浏览器 >94版本 跨站携带cookie
 > The cookie can be sent as a result of a 'cross-site' request
