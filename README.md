@@ -1,28 +1,30 @@
+English | [简体中文](README.zh.md)
 # Chrome extension:allow cookies without sameSite
-## 支持 谷歌浏览器 >94版本 跨站携带cookie
+## Support cross-site cookie carrying in Google Chrome >94.
 > The cookie can be sent as a result of a 'cross-site' request
 
-## 背景
-许多公司都有 统一登录、Electron、本地开发等场景需要支持跨站携带``cookie``，但在 ``chrome`` 94版本之后，谷歌完全移除了``samesite``配置。 只能通过``proxy``、``< 91``版本的``chromium`` 或其它浏览器等方案去调试开发，这些方案始终不太优雅。而只需要安装此插件就可以很方便的解决这个问题。</br>如果觉得有用请点个``star``吧,如果有任何疑问欢迎提``issues``。
+## Background
+Many companies require support for ``cross-site cookie`` carrying in scenarios such as unified login, Electron, and local development. However, Google completely removed the samesite configuration in Chrome version ``94``. To debug and develop, you can only use solutions such as proxy, Chromium version ``<91``, or other browsers, which are not very elegant. With the installation of this plugin, you can easily solve this problem. If you find it useful, please give it a star. If you have any questions, please feel free to raise an ``issue``。
 
-## 安装
-1. 下载仓库中的 ``cookie-extension.zip`` 压缩包 <a href="https://github.com/newJcole/chrome-samesite-cookie/raw/main/cookie-extension.zip">点击下载</a>；
-2. 打开``Chrome``浏览器，并进入扩展程序目录；
-3. 打开扩展程序页面 右上角的开发者模式；
-4. 将``cookie-extension.zip``拖进扩展程序页面（直接拖文件夹也可以），既安装成功；
-5. 在浏览器url输入框的右上角扩展程序点开，点击``固定``按钮常驻在前台；
+## Install
+1. Download the ``cookie-extension.zip`` compressed file from the repository. <a href="https://github.com/newJcole/chrome-cross-domain-cookie/raw/main/cookie-extension.zip">download</a>;
+2. Open the ``Chrome`` and go to the extensions directory;
+3. Open the developer mode in the upper-right corner of the extensions page;
+4. Drag the ``cookie-extension.zip`` file into the extensions page (you can also drag the folder directly) to install it successfully;
+5. Click the "Pin" button in the upper-right corner of the extension icon in the browser URL input box to keep it permanently in the foreground;
 
-&nbsp;&nbsp;<img width="318" alt="image" src="https://user-images.githubusercontent.com/111993029/193226957-f9aa9eaa-096d-4ec0-a65c-867bdbfd4fd2.png">
 
-## 使用
-- 总开关(``enable``)
-  - 默认为关闭状态(🍪为灰色）；
-  - 通过切换 ``enable``开关来切换插件总开关；
+<img width="466" alt="image" src="https://user-images.githubusercontent.com/111993029/193187984-9d9a3b73-8513-410d-9c84-811944e647d5.png">
+
+## Useage
+- Switch(``enable``)
+  - Default state is disabled(🍪is gray);
+  - Switch the master switch of the plugin by toggling the ``enable`` switch;
   
-- 开发者模式(``development``)
-  - 默认开启（建议在``localhost``的场景下使用，同时避免CSRF攻击）；
-  - 开启：则只在``localhost``下允许跨站``cookie``携带，关闭：允许所有网站使用``cookie``携带；
+- Developer mode(``development``)
+  - Default state is enable(It is recommended to use this in a ``localhost`` scenario, while also avoiding CSRF attacks);
+  - Enabled:only allows cross-site cookie carrying on ``localhost``;Disabled: allows cookie carrying on all websites;
   
-## 预览
+## Preview
   
 &nbsp;&nbsp;&nbsp;&nbsp;<img width="203" alt="image" src="https://user-images.githubusercontent.com/111993029/193189127-5f79aa75-d95f-4a73-abfe-f8e766a3dfed.png">
