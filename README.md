@@ -4,7 +4,7 @@ English | [简体中文](README.zh.md)
 > The cookie can be sent as a result of a 'cross-site' request
 
 ## Background
-Many companies require support for ``cross-site cookie`` carrying in scenarios such as unified login, Electron, and local development. However, Google completely removed the samesite configuration in Chrome version ``94``. To debug and develop, you can only use solutions such as proxy, Chromium version ``<91``, or other browsers, which are not very elegant. With the installation of this plugin, you can easily solve this problem. If you find it useful, please give it a star. If you have any questions, please feel free to raise an ``issue``。
+Many companies require support for ``cross-site cookie`` carrying in scenarios such as unified login, Electron, and local development. However, Google completely removed the samesite configuration in Chrome version ``94``. To debug and develop, you can only use solutions such as proxy, Chromium version ``<91``, or other browsers, which are not very elegant. With the installation of this plugin, you can easily solve this problem. If you find it useful, please give it a star. If you have any questions, please feel free to raise an ``issue``.
 
 ## Install
 1. Download the ``cookie-extension.zip`` compressed file from the repository. <a href="https://github.com/newJcole/chrome-cross-domain-cookie/raw/main/cookie-extension.zip">download</a>;
