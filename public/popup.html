@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Popup</title>
-  <style>
-    @import './style.css';
-  </style>
-</head>
-<body>
-  <div class="container">
-  <section class="row">
-    <div class="global-toggle" id="globalMainSwitch">
-      enable
-    </div>
-  </section>
-  <section class="row">
-    <label class="label" for="globalSwitch">enable</label>
-    <label class="switch">
-        <input type="checkbox" id="globalSwitch">
-        <span class="slider round"></span>
-      </label>
-    </section>
-    <section class="row">
-      <label class="label" for="developMode">development</label>
-      <label class="switch">
-          <input type="checkbox" id="developMode">
-          <span class="slider round"></span>
-        </label>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Popup</title>
+    <style>
+      @import "./style.css";
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section class="row">
+        <div class="global-toggle" id="globalMainSwitch"></div>
       </section>
-
+      <div class="function">
+        <section class="row">
+          <label class="label" for="globalSwitch">Enable</label>
+          <label class="switch">
+            <input type="checkbox" id="globalSwitch" />
+            <span class="slider round"></span>
+          </label>
+        </section>
+        <section class="row">
+          <label class="label" for="developMode">Dev Mode</label>
+          <label class="switch">
+            <input type="checkbox" id="developMode" />
+            <span class="slider round"></span>
+          </label>
+        </section>
+      </div>
     </div>
-    <script src="./popup.js" ></script>
-</body>
+    <script src="./popup.js"></script>
+  </body>
 </html>

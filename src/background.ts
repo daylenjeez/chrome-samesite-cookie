@@ -69,7 +69,6 @@ function addRequestListener() {
 
 function requestListener(details: chrome.webRequest.WebRequestHeadersDetails) {
   const { initiator } = details;
-  console.log(state.developMode);
   if (state.developMode && !isLocal(initiator)) return; //only allow localhost
 
   storeAllCookie();

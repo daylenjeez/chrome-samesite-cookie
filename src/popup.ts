@@ -1,3 +1,8 @@
+const getBackground = (enable: boolean) =>
+  `${enable ? "#ee6c4d" : "#EEEEEE"} url(./icon/${
+    enable ? "enable" : "disabled"
+  }.svg) center 45% / 60% no-repeat`;
+
 window.onload = () => {
   const GlobalSwitch = document.querySelector(
     "#globalSwitch"
@@ -15,7 +20,7 @@ window.onload = () => {
 
   const setEnable = (enable: boolean) => {
     GlobalSwitch.checked = enable;
-    globalMainSwitch.innerHTML = enable ? "enable" : "disable";
+    globalMainSwitch.style.background = getBackground(enable);
   };
 
   const toggleEnable = () => {
