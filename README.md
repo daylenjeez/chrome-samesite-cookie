@@ -14,13 +14,16 @@
 
 ## 使用
 
-- 总开关(`enable`)
+- 总开关(`Enable`)
   - 默认为关闭状态(🍪 为灰色）；
   - 通过切换 `enable`开关来切换插件总开关；
-- 开发者模式(`development`)
+- 开发者模式(`Dev Mode`)
   - 默认开启（建议在`localhost`的场景下使用，同时避免 CSRF 攻击）；
   - 开启：则只在`localhost`下允许跨站`cookie`携带，关闭：允许所有网站使用`cookie`携带；
 
 ## 预览
 
-&nbsp;&nbsp;&nbsp;&nbsp;<img width="203" alt="image" src="https://user-images.githubusercontent.com/111993029/193189127-5f79aa75-d95f-4a73-abfe-f8e766a3dfed.png">
+<img width="170" alt="image" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/b1516a49-9276-4987-b5de-deb6eedeed78">
+
+
+
