@@ -1,8 +1,9 @@
-简体中文 | [English](README.en.md)
+<div align=center>
+<img width="176" alt="image" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/8dc9eeca-eb78-42cb-b6a7-635c70d2f31e">
+</div>
+<h1 align="center">Chrome跨站共享Cookie</h1>
 
-## Chrome Cross Samesite Coookie
-
-无需多余配置，一键开关即可支持 `chrome` 任意版本跨站携带 `cookie` ；同时支持开启本地模式，让插件只生效与本地域名而不影响其他环境
+<p align="center">🌟无需多余配置，一键开关即可支持 ``chrome`` 跨站携带 ``cookie`` ；同时支持开发模式，允许只对本地域名跨站共享，而不影响其它环境</p>
 
 ## 安装
 
@@ -21,9 +22,6 @@
   - 默认开启（建议在`localhost`的场景下使用，同时避免 CSRF 攻击）；
   - 开启：则只在`localhost`下允许跨站`cookie`携带，关闭：允许所有网站使用`cookie`携带；
 
-## 预览
-
-<img width="170" alt="image" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/b1516a49-9276-4987-b5de-deb6eedeed78">
 
 
 
