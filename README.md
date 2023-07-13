@@ -3,7 +3,7 @@
 </div>
 <h1 align="center">Chrome跨站共享Cookie</h1>
 
-<p align="center">🌟无需多余配置，一键开关即可支持 ``chrome`` 跨站携带 ``cookie`` ；同时支持开发模式，允许只对本地域名跨站共享，而不影响其它环境</p>
+<p align="center">🌟无需多余配置，一键开关即可支持 chrome 跨站携带 cookie </p>
 
 ## 安装
 
@@ -17,7 +17,7 @@
 
 - 总开关(`Enable`)
   - 默认为关闭状态(🍪 为灰色）；
-  - 通过切换 `enable`开关来切换插件总开关；
+  - 通过切换 `Enable`开关来切换插件总开关；
 - 开发者模式(`Dev Mode`)
   - 默认开启（建议在`localhost`的场景下使用，同时避免 CSRF 攻击）；
   - 开启：则只在`localhost`下允许跨站`cookie`携带，关闭：允许所有网站使用`cookie`携带；
