@@ -1,3 +1,4 @@
+[English](READM.en.md) | 简体中文
 <div align=center>
 <img width="176" alt="image" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/8dc9eeca-eb78-42cb-b6a7-635c70d2f31e">
 </div>
