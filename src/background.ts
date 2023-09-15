@@ -2,9 +2,9 @@ type Props = {
   readonly cookieMap: Map<string, string>;
 };
 
-const PROTOCAL_REG = /(^\w+:|^)\/\//;
+const PROTOCOL_REG = /(^\w+:|^)\/\//;
 const DOMAIN_REG = /^(?:[^@\/\n]+@)?(?:www\.)?([^:\/\n]+)/; //extra domain
-const SECONDLEVEL_DOMIN_REG = /.[^.]*\.[^.]{2,3}(?:\.[^.]{2,3})?$/; //extra 2nd levels domains
+const SECONDLEVEL_DOMAIN_REG = /.[^.]*\.[^.]{2,3}(?:\.[^.]{2,3})?$/; //extra 2nd levels domains
 const LOCALHOST = ["localhost", "127.0.0.1"];
 const INITIAL_ENABLE = false;
 const INITIAL_DEVELOPMENT_MODE = true;
@@ -69,9 +69,11 @@ function addRequestListener() {
 
 function requestListener(details: chrome.webRequest.WebRequestHeadersDetails) {
   const { initiator } = details;
+  
   if (state.developMode && !isLocal(initiator)) return; //only allow localhost
-
+  
   storeAllCookie();
+  
   return getBeforeCookie(details);
 }
 
@@ -110,22 +112,22 @@ function headersHasCookie(details: chrome.webRequest.WebRequestHeadersDetails) {
 
 function getCookieDomain(url: string) {
   if (url === "localhost") return url;
-  const urlWidthoutProtocol = removeProtocal(url); //remove protocol
+  const urlWidthoutProtocol = removeProtocol(url); //remove protocol
 
   const domain = urlWidthoutProtocol.match(DOMAIN_REG)?.[0];
   if (!domain) return;
 
-  const res = domain.match(SECONDLEVEL_DOMIN_REG)?.[0];
+  const res = domain.match(SECONDLEVEL_DOMAIN_REG)?.[0];
   return res;
 }
 
-function removeProtocal(url: string) {
-  return url.replace(PROTOCAL_REG, "");
+function removeProtocol(url: string) {
+  return url.replace(PROTOCOL_REG, "");
 }
 
 function isLocal(url?: string) {
   if (!url) return;
-  const domain = removeProtocal(url).match(DOMAIN_REG)?.[0];
+  const domain = removeProtocol(url).match(DOMAIN_REG)?.[0];
   if (!domain) return;
   return LOCALHOST.includes(domain);
 }
