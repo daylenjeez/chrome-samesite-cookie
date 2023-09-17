@@ -9,7 +9,7 @@
 ## 功能
 - 🎨支持顶级导航之间的跨域*cookie*共享；
 - 🚗支持*iframe*内嵌与父级之间的跨域*cookie*共享；
-- 💻支持只允许开发环境*cookie*共享
+- 💻支持只允许开发环境*cookie*共享；
 
 ## 安装
 
@@ -30,7 +30,7 @@
 
 ## 原理
 
-<div align=center>
+<div align="left">
   <img width="400" alt="design" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/0eeccfa2-38c5-4656-ac4d-850d94efd459">
 </div>
 
