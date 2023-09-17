@@ -28,7 +28,7 @@
 
 ## 工作流
 <div align="left">
-  <img width="700" alt="design" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/13e0cd28-c155-42f3-bd68-cbd984f2d748">
+  <img alt="design" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/13e0cd28-c155-42f3-bd68-cbd984f2d748">
 </div>
 
 
