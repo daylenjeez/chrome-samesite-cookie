@@ -7,6 +7,12 @@ English | [简体中文](README.md)
 
 <p align="center">🌟 No additional configuration required, one-click switch to support Chrome cross-site cookie carrying </p>
 
+## Features
+
+- 🎨 Supports cross-domain cookie sharing between top-level navigations.
+- 🚗 Supports cross-domain cookie sharing between iframes and their parent.
+- 💻 Supports allowing cookie sharing only in the development environment.
+
 ## Installation
 
 1. Download the `cookie-extension.zip` compressed package from the repository <a href="https://github.com/daylenjeez/chrome-samesite-cookie/raw/main/cookie-extension.zip">Click to Download</a>;
@@ -23,3 +29,5 @@ English | [简体中文](README.md)
 - Developer Mode (`Dev Mode`)
   - It is turned on by default (recommended for use in the `localhost` scenario to avoid CSRF attacks);
   - On: only allows cross-site `cookie` carrying under `localhost`, Off: allows all websites to use `cookie` carrying;
+
+## workflow
