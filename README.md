@@ -1,10 +1,15 @@
 [English](README.en.md) | 简体中文
 <div align=center>
-<img width="176" alt="image" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/8dc9eeca-eb78-42cb-b6a7-635c70d2f31e">
+  <img width="176" alt="icon" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/8dc9eeca-eb78-42cb-b6a7-635c70d2f31e">
 </div>
 <h1 align="center">Chrome跨站共享Cookie</h1>
 
 <p align="center">🌟无需多余配置，一键开关即可支持 chrome 跨站携带 cookie </p>
+
+## 功能
+- 🎨支持顶级导航之间的跨域*cookie*共享；
+- 🚗支持*iframe*内嵌与父级之间的跨域*cookie*共享；
+- 💻支持只允许开发环境*cookie*共享
 
 ## 安装
 
@@ -22,6 +27,12 @@
 - 开发者模式(`Dev Mode`)
   - 默认开启（建议在`localhost`的场景下使用，同时避免 CSRF 攻击）；
   - 开启：则只在`localhost`下允许跨站`cookie`携带，关闭：允许所有网站使用`cookie`携带；
+
+## 原理
+
+<div align=center>
+  <img width="400" alt="design" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/0eeccfa2-38c5-4656-ac4d-850d94efd459">
+</div>
 
 
 
