@@ -8,13 +8,11 @@ English | [简体中文](README.md)
 <p align="center">🌟 No additional configuration required, one-click switch to support Chrome cross-site cookie carrying </p>
 
 ## Features
-
 - 🎨 Supports cross-domain cookie sharing between top-level navigations.
 - 🚗 Supports cross-domain cookie sharing between iframes and their parent.
 - 💻 Supports allowing cookie sharing only in the development environment.
 
 ## Installation
-
 1. Download the `cookie-extension.zip` compressed package from the repository <a href="https://github.com/daylenjeez/chrome-samesite-cookie/raw/main/cookie-extension.zip">Click to Download</a>;
 2. Open the `Chrome` browser and go to the extension directory;
 3. Open the developer mode in the upper right corner of the extension page;
@@ -22,7 +20,6 @@ English | [简体中文](README.md)
 5. Click the `Pin` button in the upper right corner of the browser URL input box to keep it in the foreground;
 
 ## Usage
-
 - Master Switch (`Enable`)
   - Default is off (🍪 is gray);
   - Switch the `Enable` switch to toggle the plugin's master switch;
@@ -31,3 +28,6 @@ English | [简体中文](README.md)
   - On: only allows cross-site `cookie` carrying under `localhost`, Off: allows all websites to use `cookie` carrying;
 
 ## workflow
+<div align="left">
+  <img width="700" alt="design" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/0eeccfa2-38c5-4656-ac4d-850d94efd459">
+</div>
