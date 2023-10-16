@@ -29,5 +29,5 @@ English | [简体中文](README.md)
 
 ## workflow
 <div align="left">
-  <img alt="design" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/13e0cd28-c155-42f3-bd68-cbd984f2d748">
+  <img alt="design" width="60%" src="https://github.com/daylenjeez/chrome-samesite-cookie/assets/111993029/69100922-54f1-4893-b0f7-7e0f389b5a25">
 </div>
